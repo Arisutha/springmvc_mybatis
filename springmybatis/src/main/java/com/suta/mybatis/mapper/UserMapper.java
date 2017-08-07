@@ -24,8 +24,7 @@ public interface UserMapper {
 	@Options(useGeneratedKeys=true, keyProperty="ID", flushCache=FlushCachePolicy.TRUE, keyColumn="ID")
 	public boolean insert(User user) throws Exception;
 	
-	@Update("UPDATE DEMO_MYBATIS.USER SET NAME=#{name}, AGE=#{age}, SEX=#{sex}, CREATE_TIME=${create_time} WHERE ID=#{id}")
-	@Options(useGeneratedKeys=true, keyProperty="ID", flushCache=FlushCachePolicy.TRUE, keyColumn="ID")
+	@Update("UPDATE DEMO_MYBATIS.USER SET NAME=#{name}, AGE=#{age}, SEX=#{sex}, CREATE_TIME=#{create_time} WHERE ID=#{id}")
 	public boolean update(User user) throws Exception;
 	
 	@Delete("DELETE FROM DEMO_MYBATIS.USER WHERE ID = #{ID}")
