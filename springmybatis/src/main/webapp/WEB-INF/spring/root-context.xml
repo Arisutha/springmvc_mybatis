@@ -28,6 +28,10 @@
         <property name="validationQuery" value="SELECT 1" /> 
 	</bean>
 	
+	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" destroy-method="close">
+		<property name="jndiName" value="java:/mybatis_jndi"></property>
+	</bean> -->
+	
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="typeAliasesPackage" value="com.suta.mybatis.model" />

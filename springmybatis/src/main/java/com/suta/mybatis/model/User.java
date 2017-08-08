@@ -3,6 +3,8 @@ package com.suta.mybatis.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = -6454892359536732877L;
@@ -11,6 +13,8 @@ public class User implements Serializable {
 	private String name;
 	private int age;
 	private int sex;
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date create_time;
 
 	public int getId() {
