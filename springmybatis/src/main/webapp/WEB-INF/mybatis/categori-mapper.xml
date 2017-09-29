@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- Mapper.java namespace -->
+<mapper namespace="com.suta.mybatis.mapper.CategoriMapper">
+	<!-- Categori.java namespace -->
+	<resultMap type="com.suta.mybatis.model.Categori" id="Categori">
+		<!-- map table "CATEGORI" column to class "Categori" property -->
+		<result column="ID" property="id"/>
+		<result column="NAMA_CATEGORI" property="namaCategori"/>
+		<result column="STATUS" property="status"/>
+		<result column="PARENT_ID" property="parentId"/>
+	</resultMap>
+	
+	<select id="getAllCategori" resultMap="Categori">
+		SELECT C.ID AS id, C.NAMA_CATEGORI AS namaCategori, C.STATUS as status, C.PARENT_ID as parentId FROM HR.CATEGORI C
+	</select>
+	
+	<select id="getSingleCategori" resultType="com.suta.mybatis.model.Categori" parameterType="int">
+		SELECT C.ID as id, C.NAMA_CATEGORI as namaCategori, C.STATUS as status, C.PARENT_ID as parentID FROM HR.CATEGORI C WHERE C.ID = #{ID}
+	</select>
+	
+	<insert id="insertCategori" parameterType="com.suta.mybatis.model.Categori">
+		INSERT INTO HR.CATEGORI(NAMA_CATEGORI, STATUS, PARENT_ID) VALUES (#{namaCategori, jdbcType=VARCHAR}, #{status, jdbcType=VARCHAR}, #{parentId, jdbcType=NUMERIC})
+		
+	</insert>
+	
+	<!-- parameterType is optional -->
+	<update id="updateCategori" parameterType="com.suta.mybatis.model.Categori">
+		UPDATE HR.CATEGORI SET 
+			NAMA_CATEGORI=#{namaCategori, jdbcType=VARCHAR}, 
+			STATUS=#{status, jdbcType=VARCHAR}, 
+			PARENT_ID=#{parentId, jdbcType=NUMERIC} 
+			WHERE ID=#{id}
+	</update>
+	
+	<delete id="deleteCategori" parameterType="int">
+		DELETE FROM HR.CATEGORI WHERE ID = #{id}
+	</delete>
+	
+</mapper>

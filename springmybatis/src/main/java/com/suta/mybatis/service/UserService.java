@@ -1,11 +1,12 @@
 package com.suta.mybatis.service;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import com.suta.mybatis.model.User;
 
 public interface UserService {
 
-	public ArrayList<User> getAllUser() throws Exception;
+	public List<User> getAllUser() throws Exception;
 	
 	public User getSingleUser(int id) throws Exception;
 	
