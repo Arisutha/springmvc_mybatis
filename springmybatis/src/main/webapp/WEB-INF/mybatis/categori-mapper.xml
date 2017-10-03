@@ -22,7 +22,6 @@
 	
 	<insert id="insertCategori" parameterType="com.suta.mybatis.model.Categori">
 		INSERT INTO HR.CATEGORI(NAMA_CATEGORI, STATUS, PARENT_ID) VALUES (#{namaCategori, jdbcType=VARCHAR}, #{status, jdbcType=VARCHAR}, #{parentId, jdbcType=NUMERIC})
-		
 	</insert>
 	
 	<!-- parameterType is optional -->
@@ -37,5 +36,14 @@
 	<delete id="deleteCategori" parameterType="int">
 		DELETE FROM HR.CATEGORI WHERE ID = #{id}
 	</delete>
+	
+	<select id="getCategoriByHierarchy" statementType="CALLABLE" parameterMap="paraGetCategoriByHierarchy">
+		{CALL HR.SHOW_CATEGORI(?, ?)}
+	</select>
+	
+	<parameterMap type="com.suta.mybatis.model.Categori" id="paraGetCategoriByHierarchy">
+		<parameter property="id" jdbcType="INTEGER" mode="IN"  />
+    	<parameter property="Categori" jdbcType="CURSOR" mode="OUT" resultMap="Categori"  />
+    </parameterMap>
 	
 </mapper>

@@ -1,6 +1,10 @@
 package com.suta.mybatis.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +45,25 @@ public class CategoriController {
 		try {
 			Categori cat = this.categoriService.getSingleCategori(1);
 			return new ResponseEntity<Categori>(cat, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("error get list categori : "+ e.getMessage());
+			return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/getCategoriByHierarchy", method = RequestMethod.GET)
+	public ResponseEntity<List<Categori>> getCategoriByHierarchy(){
+		try {
+			List<Categori> list = new ArrayList<Categori>();
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("id", 8);
+			params.put("Categori", list);
+			this.categoriService.getCategoriByHierarchy(params);
+			list = (List<Categori>) params.get("Categori");
+			return new ResponseEntity<List<Categori>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("error get list categori : "+ e.getMessage());

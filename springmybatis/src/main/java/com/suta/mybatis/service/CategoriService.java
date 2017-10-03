@@ -1,6 +1,7 @@
 package com.suta.mybatis.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.suta.mybatis.model.Categori;
 
@@ -15,5 +16,7 @@ public interface CategoriService {
 	public boolean update(Categori categori) throws Exception;
 
 	public boolean delete(int id) throws Exception;
+	
+	public void getCategoriByHierarchy(Map<String,Object> params) throws Exception;
 	
 }

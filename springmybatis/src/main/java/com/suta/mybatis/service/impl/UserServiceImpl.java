@@ -11,6 +11,7 @@ import com.suta.mybatis.model.User;
 import com.suta.mybatis.service.UserService;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
